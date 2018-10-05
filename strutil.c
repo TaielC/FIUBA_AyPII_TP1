@@ -3,10 +3,8 @@
 
 #include "strutil.h"
 
-
-
 int split_identificar_cantidad( const char* cadena , char separador ){
-	int cant_separar = 0;
+	int cant_separar = 1;
 	int contador = 0;
 	while( cadena[contador] != '\0' ){
 		if( cadena[contador] == separador )
@@ -39,19 +37,29 @@ int* split_identificar_posiciones( const char* cadena , char separador , int can
 char** split( const char* cadena , char separador ){
 
 	int cant_separar = split_identificar_cantidad( cadena , separador );
-	char** separados = malloc( sizeof(char*) * cant_separar );
+	char** separados = malloc( sizeof(char*) * cant_separar +1 );
 
 	int* pos_separar = split_identificar_posiciones( cadena , separador , cant_separar);
 
 	for( size_t i = 0 ; i < cant_separar ; i++ ){
 		separados[i] = malloc( sizeof(char) * pos_separar[i] +1 );
-		separados[i] = strndup( &cadena[pos_separar[i]] , pos_separar[i] );
+		strncpy( separados[i] , &cadena[pos_separar[i]] , pos_separar[i] );
 		separados[i][pos_separar[i]+1] = '\0';
 	}
+
+	separados[cant_separar+1] = NULL;
 
 	return separados;
 }
 
-char* join( const char** arr_cadenas , char separador ); 
+void free_strv( char** arr_cadenas ){
+	int contador = 0;
+	while( arr_cadenas[contador] != NULL ){
+		free( arr_cadenas[contador] );
+		contador++;
+	}
+	free( arr_cadenas );
+}
 
-void free_strv( char** arr_cadenas );
+
+char* join( const char** arr_cadenas , char separador ); 

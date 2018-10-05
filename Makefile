@@ -2,40 +2,22 @@ CC = gcc
 CFLAGS = -g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
 VFLAGS = --leak-check=full --track-origins=yes --show-reachable=yes 
 
-CMAIN  = main
-CFILES = $(CMAIN).c library1.c library2.c library3.c
-HFILES = library1.h library2.h library3.h
-EXEC_S = $(CMAIN)
 PADRON = 102510
 
-build: $(CFILES)
-	$(CC) $(CFLAGS) -o $(EXEC_S) $(CFILES)
+strutil: strutil_pruebas_alumno.c strutil.o
+	$(CC) $(CFLAGS) strutil_pruebas_alumno.c strutil.o -o strutil
 
-%.o: %.c %.h
-	$(CC) $(CFLAGS) -c $<
+run_strutil: strutil
+	./strutil
 
-run: build
-	./$(EXEC_S)
-
-valgrind: build
-	valgrind $(VFLAGS) ./$(EXEC_S)
-
-gdb: build
-	gdb $(GDBFLAGS) ./$(EXEC_S)
-
-runtime: build
-	time ./$(EXEC_S)
+val_strutil: strutil
+	valgrind $(VFLAGS) ./strutil
 
 clean:
 	rm -f *.o $(EXEC_S)
 
 zip:
-	zip $(PADRON).zip $(CFILES) $(HFILES)
+	zip $(PADRON).zip 
 
-entregar: build
-	$(MAKE) run; test $$? -eq 0
-	$(MAKE) valgrind; test $$? -eq 0
-	$(MAKE) clean
-	zip $(PADRON).zip $(CFILES) $(HFILES)
-	@echo "Perfecto, no falla ni pierde memoria"
-	@echo "El zip esta listo para entregar"
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c $<
