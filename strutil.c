@@ -11,9 +11,6 @@ int split_identificar_cantidad( const char* cadena , char separador ){
 			cant_separar++;
 		contador++;
 	}
-	//En caso de que el separador sea '\0' se verá en la posición final de la cadena
-	if( cadena[contador] == separador )
-			cant_separar++;
 
 	return cant_separar;
 }
@@ -23,7 +20,7 @@ int* split_identificar_posiciones( const char* cadena , char separador , int can
 	int* posiciones = malloc( sizeof(int) * cant_separar );
 	int contador = 0;
 	int pos_encontradas = 0;
-	while( pos_encontradas <= cant_separar ){
+	while( cadena[contador] != '\0' ){
 		if( cadena[contador] == separador ){
 			posiciones[pos_encontradas] = contador;
 			pos_encontradas++;
@@ -37,7 +34,7 @@ int* split_identificar_posiciones( const char* cadena , char separador , int can
 char** split( const char* cadena , char separador ){
 
 	int cant_separar = split_identificar_cantidad( cadena , separador );
-	char** separados = malloc( sizeof(char*) * cant_separar +1 );
+	char** separados = malloc( sizeof(char*)*cant_separar +1 );
 
 	int* pos_separar = split_identificar_posiciones( cadena , separador , cant_separar);
 
@@ -49,6 +46,7 @@ char** split( const char* cadena , char separador ){
 
 	separados[cant_separar+1] = NULL;
 
+	free( pos_separar );
 	return separados;
 }
 

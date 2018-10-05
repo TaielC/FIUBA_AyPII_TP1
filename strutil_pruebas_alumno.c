@@ -5,7 +5,6 @@
 
 int main(void){
 
-
 	char** str_separadas = split( "hola,que,tal" , ',' );
 
 	for( int i = 0 ; i < 3 ; i++ ){
