@@ -63,6 +63,7 @@ int main(int argc, char const *argv[]){
 		entrada = fopen( argv[4] , "r" );
 		if( !entrada ){
 			fprintf(stderr, "No se pudo leer el archivo indicado\n");
+			return 1;
 		}
 	}else
 		entrada = stdin;
