@@ -2,19 +2,17 @@ CC = gcc
 CFLAGS = -g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
 VFLAGS = --leak-check=full --track-origins=yes --show-reachable=yes 
 
-PATH = ../gitignore/
-
-dc: dc.c $(PATH)pila.o
-	$(CC) $(CFLAGS) dc.c $(PATH)pila.o -o $(PATH)dc.exe
+dc: dc.c pila.o
+	$(CC) $(CFLAGS) dc.c pila.o -o dc.exe
 
 run: dc
-	$(PATH)dc.exe
+	./dc.exe
 
-val: dc
-	valgrind $(VFLAGS) $(PATH)dc.exe
+valgrind: dc
+	valgrind $(VFLAGS) ./dc.exe
 
 clean:
-	rm -f $(PATH)*.o $(PATH)*.exe
+	rm -f *.o *.exe
 
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
