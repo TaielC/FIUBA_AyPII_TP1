@@ -53,18 +53,4 @@ void* pila_ver_tope(const pila_t *pila);
 void* pila_desapilar(pila_t *pila);
 
 
-/* *****************************************************************
- *                    PRUEBAS PARA LA PILA
- * *****************************************************************/
-
-// Realiza pruebas sobre la implementación de la pila del alumno.
-//
-// Las pruebas deben emplazarse en el archivo ‘pruebas_alumno.c’, y
-// solamente pueden emplear la interfaz pública tal y como aparece en pila.h
-// (esto es, las pruebas no pueden acceder a los miembros del struct pila).
-//
-// Para la implementación de las pruebas se debe emplear la función
-// print_test(), como se ha visto en TPs anteriores.
-void pruebas_pila_alumno(void);
-
 #endif // PILA_H

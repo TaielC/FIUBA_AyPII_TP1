@@ -1,21 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "testing.h"
+
 #include "strutil.h"
 
 int main(void){
 
-	char** str_separadas = split( NULL , ',' );
+	char caden[1000];
 
-	for( int i = 0 ; i < 0 ; i++ ){
+	scanf(" %[^\n]" , caden );
+
+	char** str_separadas = split( caden , ' ' );
+
+	int i = 0;
+	while( str_separadas[i] ){
 		printf("%s\n", str_separadas[i] );
+		i++;
 	}
 
-	char* cadena =  join( (const char**)str_separadas , ',' );
+	char* cadena =  join( (const char**)str_separadas , ' ' );
 
-	printf("%p\n", cadena );
-
-	// free(cadena);
+	free(cadena);
 	free_strv( str_separadas );
 }

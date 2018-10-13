@@ -4,17 +4,17 @@ VFLAGS = --leak-check=full --track-origins=yes --show-reachable=yes
 
 PATH = ../gitignore/
 
-strutil: strutil_pruebas_alumno.c $(PATH)strutil.o
-	$(CC) $(CFLAGS) strutil.c $(PATH)strutil.o -o $(PATH)strutil.exe
+strutil: strutil_pruebas_alumno.c strutil.o
+	$(CC) $(CFLAGS) strutil_pruebas_alumno.c strutil.o -o strutil.exe
 
 run: strutil
-	$(PATH)strutil.exe
+	./strutil.exe
 
 val: strutil
-	valgrind $(VFLAGS) $(PATH)strutil.exe
+	valgrind $(VFLAGS) ./strutil.exe
 
 clean:
-	rm -f $(PATH)*.o $(PATH)*.exe
+	rm -f *.o *.exe
 
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
