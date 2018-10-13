@@ -15,19 +15,15 @@ void hashing_busqueda( const char* cadena , int* valor , size_t largo ){
 	}
 }
 
-int pot(int a , size_t b ){
-	for (int i = 1; i <= b; i++ ){
-		a*=a;
-	}
-	return a;
-}
-
 bool busqueda_string( const char* buscado , const char* texto ){
 
 	size_t len_buscado = strlen( buscado );
 	size_t len_texto = strlen( texto );
 
-	int nro = pot( DCS , len_buscado-1 )%NUM_PRIMO;
+	int nro = 1;
+
+	for( int i = 0 ; i < len_buscado-1 ; i++)
+		nro = ( nro * DCS )%NUM_PRIMO;
 
 	int h_buscado = 0;
 	int h_texto = 0;
@@ -101,12 +97,9 @@ int main(int argc, char const *argv[]){
 			lineas_guardadas = 0;
 		}
 		else{
-			if( cant_lineas > 0 ){
-				cola_encolar( cola_lineas , linea );
-				lineas_guardadas++;
-			}
-			else
-				free( linea );
+			if( cant_lineas == 0 ) continue;
+			cola_encolar( cola_lineas , linea );
+			lineas_guardadas++;
 			if( lineas_guardadas > cant_lineas ){
 				free( cola_desencolar( cola_lineas ));
 				lineas_guardadas--;
@@ -115,8 +108,8 @@ int main(int argc, char const *argv[]){
 		linea = NULL;
 		largo_linea = 0;
 	}
-	free( linea );
 
+	free( linea );
 	cola_destruir( cola_lineas , free );
 	fclose( entrada );
 	return EXIT_SUCCESS;

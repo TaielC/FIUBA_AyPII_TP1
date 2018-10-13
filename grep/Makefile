@@ -6,10 +6,10 @@ grep: grep.c cola.o
 	gcc $(CFLAGS) grep.c cola.o -o grep.exe
 
 run: grep
-	./grep.exe Batman 2 texto.txt
+	./grep.exe Batman 3 texto.txt
 
 valgrind: grep
-	valgrind $(VFLAGS) ./grep.exe Batman 2 texto.txt
+	valgrind $(VFLAGS) ./grep.exe Batman 3 texto.txt
 
 clean:
 	rm -f *.o *.exe
