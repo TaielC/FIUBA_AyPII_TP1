@@ -9,6 +9,9 @@
 #define NUM_PRIMO 	41
 #define DCS 		256
 
+/* --------- Función de Hashing y búsqueda ----------- */
+/* 			( Karp-Rabin ) 				*/
+
 void hashing_busqueda( const char* cadena , int* valor , size_t largo ){
 	for ( size_t i = 0; i < largo ; i++ ){
 		*valor = ( DCS * (*valor) + cadena[i])%NUM_PRIMO;
@@ -46,14 +49,8 @@ bool busqueda_string( const char* buscado , const char* texto ){
 	return false;
 }
 
-bool busqueda_string_v2( const char* s1 , const char* s2 ){
-	bool ok;
-	for(int i = 0 ; i < strlen( s2 )- strlen(s1) +1 ; i++ ){
-		ok = (0==strncmp( s1 , &s2[i] , strlen(s1) ));
-		if(ok) return ok;
-	}
-	return false;
-}
+/* ---------- PROGRAMA PRINCIPAL -------------- */
+
 
 int main(int argc, char const *argv[]){
 	

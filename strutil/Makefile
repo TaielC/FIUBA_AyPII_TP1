@@ -1,11 +1,11 @@
-CC = gcc
+CC =gcc
 CFLAGS = -g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
 VFLAGS = --leak-check=full --track-origins=yes --show-reachable=yes 
 
 PATH = ../gitignore/
 
-strutil: strutil_pruebas_alumno.c strutil.o
-	$(CC) $(CFLAGS) strutil_pruebas_alumno.c strutil.o -o strutil.exe
+strutil: strutil_pruebas_alumno.c strutil.c
+	gcc $(CFLAGS) strutil_pruebas_alumno.c strutil.c -o strutil.exe
 
 run: strutil
 	./strutil.exe

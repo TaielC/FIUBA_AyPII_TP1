@@ -11,6 +11,9 @@ run: dc
 valgrind: dc
 	valgrind $(VFLAGS) ./dc.exe
 
+gdb:
+	gdb -tui ./dc.exe
+
 clean:
 	rm -f *.o *.exe
 

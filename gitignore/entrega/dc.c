@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "../strutil/strutil.h"
+#include "strutil.h"
 #include "pila.h"
 
 #define CERO_ASCII 		'0'
