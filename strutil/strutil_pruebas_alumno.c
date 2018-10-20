@@ -7,11 +7,11 @@
 
 int main(void){
 
-	// char caden[1000];
+	char caden[1000];
 
-	// scanf(" %[^\n]" , caden );
+	scanf(" %[^\n]" , caden );
 
-	char** str_separadas = split( "" , ' ' );
+	char** str_separadas = split( caden , ',' );
 
 	int i = 0;
 	while( str_separadas[i] ){
@@ -19,7 +19,9 @@ int main(void){
 		i++;
 	}
 
-	char* cadena =  join( str_separadas , ' ' );
+	char* cadena =  join( str_separadas , ',' );
+
+	printf("%s\n", cadena );
 
 	free(cadena);
 	free_strv( str_separadas );

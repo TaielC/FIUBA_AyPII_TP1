@@ -12,12 +12,16 @@
 /* --------- Función de Hashing y búsqueda ----------- */
 /* 			( Karp-Rabin ) 				*/
 
+// Función de hashing
 void hashing_busqueda( const char* cadena , int* valor , size_t largo ){
 	for ( size_t i = 0; i < largo ; i++ ){
 		*valor = ( DCS * (*valor) + cadena[i])%NUM_PRIMO;
 	}
 }
 
+// Función de busqueda de una cadena en una linea o texto
+// Devuelve true o false de a cuerdo a si se encontró
+// la cadena o no.
 bool busqueda_string( const char* buscado , const char* texto ){
 
 	size_t len_buscado = strlen( buscado );
@@ -50,7 +54,6 @@ bool busqueda_string( const char* buscado , const char* texto ){
 }
 
 /* ---------- PROGRAMA PRINCIPAL -------------- */
-
 
 int main(int argc, char const *argv[]){
 	
